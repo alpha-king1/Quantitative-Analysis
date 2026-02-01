@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/SMA_crossover strategy.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contrarian_strategy.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/new.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB_01_SMA.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB_03_Contrarian.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NB_04_Contrarian_Backtester.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contrarian_strategy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bollinger_band.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/image" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/new.ipynb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +53,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;ai.playground.ignore.import.keys.banner.in.settings&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -95,7 +94,11 @@
       <workItem from="1767883677245" duration="752000" />
       <workItem from="1767886144866" duration="17000" />
       <workItem from="1768470739965" duration="4184000" />
-      <workItem from="1768475274550" duration="402000" />
+      <workItem from="1768475274550" duration="3112000" />
+      <workItem from="1768541386957" duration="1537000" />
+      <workItem from="1768720901880" duration="4824000" />
+      <workItem from="1769006669871" duration="188000" />
+      <workItem from="1769124976339" duration="194000" />
     </task>
     <servers />
   </component>
