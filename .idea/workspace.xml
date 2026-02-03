@@ -6,13 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NB_01_SMA.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NB_03_Contrarian.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NB_04_Contrarian_Backtester.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contrarian_strategy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/bollinger_band.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/image" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/new.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Itertive_backtesting.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Itertive_backtesting.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eurusd1H.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/learning/NB_10_IterativeBacktesting.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/learning/NB_10_IterativeBacktesting.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,10 +61,15 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\PycharmProjects\PythonProject\Part2_Materials" />
+      <recent name="C:\Users\USER\PycharmProjects\PythonProject\learning" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-PY-253.29346.142" />
         <option value="bundled-python-sdk-f2b7a9f6281b-6e1f45a539f7-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-253.29346.142" />
       </set>
     </attachedChunks>
