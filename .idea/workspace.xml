@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/DatasetStructure.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Order_block_detection.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Structures.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eurusd1H.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/oanda_life_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/oanda_life_testing.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
