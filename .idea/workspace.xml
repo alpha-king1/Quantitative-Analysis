@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Exercises/Exercise_1.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Exercises/Exercise_2_removed.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Exercises/Exercise_3.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Exercises/aapl_fb.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/NB_08_Classification.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/FinancialInstrument.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/GE_prices.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/NB_01_TimeSeries_Intro.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/NB_02_Financial_Data_Analysis.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/NB_03_Advanced_Topics.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/NB_04_OOP.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/New_NB.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/SP500.xls" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/close.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/msft.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/multi_assets.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/stocks.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/temp.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Part2_Materials/Video_Lecture_NBs/titanic.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/NB_07_Regression.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/NB_09_MLBacktester.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/NB_10_IterativeBacktesting.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/learning/bollinger_band.ipynb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/oanda_life_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/oanda_life_testing.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
