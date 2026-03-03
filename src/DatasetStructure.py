@@ -13,6 +13,8 @@ class DatasetStructure():
     def __init__(self, dataframe):
         self.dataframe = pd.read_csv(dataframe, parse_dates=["time"], index_col="time")
 
+        self.dataframe['time'] = self.dataframe.index
+
         self.dataframe['body'] = (self.dataframe['c'] - self.dataframe['o']).abs()
 
         self.dataframe['upper_wick'] = self.dataframe['h'] - self.dataframe[['o', 'c']].max(axis=1)
@@ -35,6 +37,15 @@ class DatasetStructure():
         '''
         data = self.dataframe
         return data
+
+    def vol_regime(self):
+        self.dataframe['atr_norm'] = self.dataframe['ATR_14'] / self.dataframe['ATR_14'].rolling(252).mean()
+
+        self.dataframe['vol_regime'] = pd.qcut(
+            self.dataframe['atr_norm'],
+            q=[0, 0.33, 0.66, 1.0],
+            labels=['Low', 'Medium', 'High']
+        )
 
     def time_control(self):
         '''

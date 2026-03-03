@@ -5,8 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/__init__.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DatasetStructure.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/DatasetStructure.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Itertive_backtesting.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Itertive_backtesting.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Order_block_detection.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Order_block_detection.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/daataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/daataset.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eurusd.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/eurusd.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eurusd1H.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/eurusd1H.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/oanda_life_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/oanda_life_testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orderblock.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/orderblock.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +24,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -65,6 +73,8 @@
       <recent name="C:\Users\USER\PycharmProjects\PythonProject" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\USER\PycharmProjects\PythonProject\Dataset" />
+      <recent name="C:\Users\USER\PycharmProjects\PythonProject\src" />
       <recent name="C:\Users\USER\PycharmProjects\PythonProject\Part2_Materials" />
       <recent name="C:\Users\USER\PycharmProjects\PythonProject\learning" />
     </key>
