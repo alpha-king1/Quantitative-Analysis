@@ -63,7 +63,7 @@ Clean and Normalize Dataset
         ↓
 Generate Market Structure Events
         ↓
-Extract Research Features
+Extract Meaningfull Research Features
         ↓
 Run Statistical Hypothesis Tests
         ↓
