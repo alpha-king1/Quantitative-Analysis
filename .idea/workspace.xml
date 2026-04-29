@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9660a92d-041b-4b71-9f60-ac4c86a215c8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Notebooks/Phase 5/Life_ob_settings.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notebooks/Phase 6/deployment.ipynb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Notebooks/Phase 6/rulebase_structure.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/PythonProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonProject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dataset/bullish_ob.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Dataset/bullish_ob.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Trading_Structures.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Trading_Structures.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/oanda_life_testing.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/oanda_life_testing.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notebooks/Phase 6/deployment.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Notebooks/Phase 6/deployment.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,6 +116,8 @@
       <workItem from="1776867702867" duration="66000" />
       <workItem from="1776898909059" duration="1751000" />
       <workItem from="1777035072649" duration="1180000" />
+      <workItem from="1777063401467" duration="5399000" />
+      <workItem from="1777371042872" duration="4704000" />
     </task>
     <servers />
   </component>
