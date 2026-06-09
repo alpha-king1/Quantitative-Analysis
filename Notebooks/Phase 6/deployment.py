@@ -325,6 +325,32 @@ class ConTrader(tpqoa.tpqoa):
         print("{} | units = {} | price = {} | P&L = {} | Cum P&L = {}".format(time, units, price, pl, cumpl))
         print(100 * "-" + "\n")
 
-trader = ConTrader('../../oanda.cfg', 'XAU_USD', bar_length='1min', risk_percentage=2)
-trader.get_most_recent(days=1)
-trader.stream_data(trader.instrument)
+print('starting')
+if __name__ == "__main__":
+    trader = ConTrader('oanda.cfg', 'XAU_USD', bar_length='1min', risk_percentage=2)
+
+    print("Fetching historical M1 foundation data...")
+    trader.get_most_recent(days=1)
+
+    print("Entering live streaming loop with auto-reconnect fallback...")
+
+    while True:
+        try:
+            # This triggers OANDA's live data feed
+            trader.stream_data(trader.instrument)
+
+        except Exception as e:
+            print(f"\n[!] Stream disconnected or timed out: {e}")
+            print("[*] Reconnecting to stream-fxpractice in 5 seconds...")
+
+            time.sleep(5)
+
+            try:
+                trader.summary = trader.get_account_summary()
+                trader.balance = trader.summary['balance']
+                trader.riskable = float(trader.balance) * (2 / 100)
+            except Exception:
+                pass
+
+            print("[*] Resuming stream session...")
+            continue
