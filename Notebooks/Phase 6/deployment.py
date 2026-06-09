@@ -131,7 +131,7 @@ class ConTrader(tpqoa.tpqoa):
         curr = self.raw_data.iloc[i]
         prev = self.raw_data.iloc[i-1]
 
-        if (curr['c'] > curr['o'] and (curr['c'] - curr['o']) > (prev['h'] - prev['l']) * displacement_mult and
+        if (curr['c'] > curr['o'] and (curr['c'] - curr['o']) > (prev['o'] - prev['c']) * displacement_mult and
                 prev['body'] < prev['ATR_14']):
             if prev['c'] < prev['o']:
                 self.active_zones.append({
@@ -181,7 +181,7 @@ class ConTrader(tpqoa.tpqoa):
         curr = self.raw_data.iloc[i]
         prev = self.raw_data.iloc[i-1]
 
-        if curr['c'] < curr['o'] and (curr['o'] - curr['c']) > (prev['h'] - prev['l']) * displacement_mult:
+        if curr['c'] < curr['o'] and (curr['o'] - curr['c']) > (prev['o'] - prev['c']) * displacement_mult:
             if prev['c'] > prev['o']:
                 self.active_zones.append({
                     'type': 'Bearish',
@@ -230,7 +230,7 @@ class ConTrader(tpqoa.tpqoa):
                 order = self.create_order(self.instrument,
                                           units=self.units,
                                           sl_distance= signal['sl'],
-                                          tp_price= signal['tprofit'],
+                                          tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
                 if order:
@@ -243,7 +243,7 @@ class ConTrader(tpqoa.tpqoa):
                 order = self.create_order(self.instrument,
                                           units=self.units * -2,
                                           sl_distance= signal['sl'],
-                                          tp_price= signal['tprofit'],
+                                          tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
                 if order:
@@ -258,7 +258,7 @@ class ConTrader(tpqoa.tpqoa):
                 order = self.create_order(self.instrument,
                                           units= self.units * -1,
                                           sl_distance= signal['sl'],
-                                          tp_price= signal['tprofit'],
+                                          tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
                 if order:
@@ -270,7 +270,7 @@ class ConTrader(tpqoa.tpqoa):
                 order = self.create_order(self.instrument,
                                           units=self.units * -2,
                                           sl_distance= signal['sl'],
-                                          tp_price= signal['tprofit'],
+                                          tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
                 if order:
@@ -283,7 +283,7 @@ class ConTrader(tpqoa.tpqoa):
             order = self.create_order(self.instrument,
                                       units= -self.units,
                                       sl_distance= signal['sl'],
-                                      tp_price= signal['tprofit'],
+                                      tp_price= signal['tp'],
                                       suppress = True,
                                       ret = True)
             if order:
