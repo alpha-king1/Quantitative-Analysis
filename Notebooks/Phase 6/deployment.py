@@ -131,7 +131,7 @@ class ConTrader(tpqoa.tpqoa):
         curr = self.raw_data.iloc[i]
         prev = self.raw_data.iloc[i-1]
 
-        if (curr['c'] > curr['o'] and (curr['c'] - curr['o']) > (prev['o'] - prev['c']) * displacement_mult and
+        if (curr['c'] > curr['o'] and (curr['body']) > (prev['body']) * displacement_mult and \
                 prev['body'] < prev['ATR_14']):
             if prev['c'] < prev['o']:
                 self.active_zones.append({
@@ -181,12 +181,12 @@ class ConTrader(tpqoa.tpqoa):
         curr = self.raw_data.iloc[i]
         prev = self.raw_data.iloc[i-1]
 
-        if curr['c'] < curr['o'] and (curr['o'] - curr['c']) > (prev['o'] - prev['c']) * displacement_mult:
+        if curr['c'] < curr['o'] and (curr['body']) > (prev['body']) * displacement_mult:
             if prev['c'] > prev['o']:
                 self.active_zones.append({
                     'type': 'Bearish',
-                    'top': prev['h'],
-                    'bottom': prev['l'],
+                    'top': prev['c'],
+                    'bottom': prev['o'],
                     'created_time': self.raw_data['time'].iloc[i],
                     'created_at': i,
                     'status': 'Active'
