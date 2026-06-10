@@ -97,13 +97,13 @@ class Structures:
                 prev = self.data.iloc[i - 1]
                 # --- 1. IDENTIFY NEW ORDER BLOCKS ---
                 # Bullish OB: Last Bearish candle before a strong Bullish move
-                if curr['c'] > curr['o'] and (curr['c'] - curr['o']) > (prev['h'] - prev['l']) * displacement_mult and \
+                if curr['c'] > curr['o'] and (curr['c'] - curr['o']) > (prev['o'] - prev['c']) * displacement_mult and \
                         prev['body'] < prev['ATR_14']:
                     if prev['c'] < prev['o']:
                         active_zones.append({
                             'type': 'Bullish',
-                            'top': prev['h'],
-                            'bottom': prev['l'],
+                            'top': prev['o'],
+                            'bottom': prev['c'],
                             'created_at': i,
                             'created_time': self.data['time'].iloc[i],
                             'status': 'Active'
@@ -119,7 +119,7 @@ class Structures:
                     hit = False
                     if zone['type'] == 'Bullish':
                         # Low enters zone, but Close stays above bottom
-                        if curr['l'] <= zone['top'] and curr['c'] >= zone['top'] and i - zone['created_at'] > 10:
+                        if curr['l'] <= zone['top'] <= curr['c'] and i - zone['created_at'] > 10:
                             hit = True
                     if hit:
                         # Capture the Return

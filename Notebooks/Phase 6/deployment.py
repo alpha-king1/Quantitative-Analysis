@@ -136,8 +136,8 @@ class ConTrader(tpqoa.tpqoa):
             if prev['c'] < prev['o']:
                 self.active_zones.append({
                     'type': 'Bullish',
-                    'top': prev['h'],
-                    'bottom': prev['l'],
+                    'top': prev['o'],
+                    'bottom': prev['c'],
                     'created_at': i,
                     'created_time': self.raw_data['time'].iloc[i],
                     'status': 'Active'
