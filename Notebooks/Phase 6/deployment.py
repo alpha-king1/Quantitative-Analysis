@@ -41,7 +41,7 @@ class ConTrader(tpqoa.tpqoa):
                               start = past,
                               end = now,
                               granularity = 'M1',
-                              price = "B")
+                              price = "M")
         # df = df.resample(self.bar_length, label = "right").last().dropna().iloc[:-1]
 
         self.raw_data = df.copy()
@@ -90,7 +90,7 @@ class ConTrader(tpqoa.tpqoa):
 
         # collect and store tick data
         recent_tick = pd.to_datetime(time).replace(tzinfo=None)
-        df = pd.DataFrame({self.instrument:bid},
+        df = pd.DataFrame({self.instrument: (ask + bid) / 2},
                           index = [recent_tick])
         self.tick_data = pd.concat([self.tick_data, df]) # new with pd.concat()
 
