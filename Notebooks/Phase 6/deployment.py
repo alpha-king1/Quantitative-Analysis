@@ -103,7 +103,7 @@ class ConTrader(tpqoa.tpqoa):
             if bullish_signal or bearish_signal:
                 self.execute_trades()
 
-            if len(self.raw_data) - self.trade_created_at > 20 and self.position == 1:
+            if len(self.raw_data) - self.trade_created_at > 30 and (self.position == 1 or self.position == -1):
                 print('going neutral')
                 self.execute_trades('neutral')
 
@@ -225,9 +225,6 @@ class ConTrader(tpqoa.tpqoa):
         self.update_position()
 
         if signal['status'] == 'active' and signal['position'] == 1:
-            print('about to take buy trade')
-            print(signal['sl'])
-            print(signal['tp'])
             if self.position == 0:
                 self.units = round(self.riskable/signal['sl'])
                 order = self.create_order(self.instrument,
@@ -236,7 +233,6 @@ class ConTrader(tpqoa.tpqoa):
                                           tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
-                print(order)
                 if order:
                     self.trade_created_at = signal['i']
                     self.position = 1
@@ -258,18 +254,14 @@ class ConTrader(tpqoa.tpqoa):
 
 
         if signal['status'] == 'active' and signal['position'] == -1:
-            print('about to take sell trade')
-            print(signal['sl'])
-            print(signal['tp'])
             if self.position == 0:
-                self.units = round(self.riskable/signal['sl'])
+                self.units = round((self.riskable/signal['sl'])* -1)
                 order = self.create_order(self.instrument,
-                                          units= self.units * -1,
+                                          units= self.units,
                                           sl_distance= signal['sl'],
                                           tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
-                print(order)
                 if order:
                     self.trade_created_at = signal['i']
                     self.position = -1
