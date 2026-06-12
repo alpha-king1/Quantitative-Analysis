@@ -159,7 +159,7 @@ class ConTrader(tpqoa.tpqoa):
                 self.signal = {
                     'status': 'active',
                     'position': 1,
-                    'tp': prev['c'] + 100,
+                    'tp': round(prev['c'] + 100),
                     'sl': 25,
                     'entry_type': "market",
                     'ml_prob':0.6,
@@ -208,7 +208,7 @@ class ConTrader(tpqoa.tpqoa):
                 self.signal = {
                     'status': 'active',
                     'position': -1,
-                    'tp': prev['c'] - 100,
+                    'tp': round(prev['c'] - 100),
                     'sl': 25,
                     'entry_type': "market",
                     'ml_prob':0.6,
@@ -225,6 +225,9 @@ class ConTrader(tpqoa.tpqoa):
         self.update_position()
 
         if signal['status'] == 'active' and signal['position'] == 1:
+            print('about to take buy trade')
+            print(signal['sl'])
+            print(signal['tp'])
             if self.position == 0:
                 self.units = round(self.riskable/signal['sl'])
                 order = self.create_order(self.instrument,
@@ -233,6 +236,7 @@ class ConTrader(tpqoa.tpqoa):
                                           tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
+                print(order)
                 if order:
                     self.trade_created_at = signal['i']
                     self.position = 1
@@ -246,6 +250,7 @@ class ConTrader(tpqoa.tpqoa):
                                           tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
+                print(order)
                 if order:
                     self.trade_created_at = signal['i']
                     self.position = 1
@@ -253,6 +258,9 @@ class ConTrader(tpqoa.tpqoa):
 
 
         if signal['status'] == 'active' and signal['position'] == -1:
+            print('about to take sell trade')
+            print(signal['sl'])
+            print(signal['tp'])
             if self.position == 0:
                 self.units = round(self.riskable/signal['sl'])
                 order = self.create_order(self.instrument,
@@ -261,6 +269,7 @@ class ConTrader(tpqoa.tpqoa):
                                           tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
+                print(order)
                 if order:
                     self.trade_created_at = signal['i']
                     self.position = -1
@@ -273,6 +282,7 @@ class ConTrader(tpqoa.tpqoa):
                                           tp_price= signal['tp'],
                                           suppress = True,
                                           ret = True)
+                print(order)
                 if order:
                     self.trade_created_at = signal['i']
                     self.position = -1
