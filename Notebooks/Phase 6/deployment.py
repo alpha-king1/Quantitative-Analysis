@@ -131,7 +131,7 @@ class ConTrader(tpqoa.tpqoa):
         curr = self.raw_data.iloc[i]
         prev = self.raw_data.iloc[i-1]
 
-        if (curr['c'] > curr['o'] and (curr['body']) > (prev['body']) * displacement_mult and \
+        if (curr['c'] > curr['o'] and (curr['body']) > (prev['body']) * displacement_mult and
                 prev['body'] < prev['ATR_14']):
             if prev['c'] < prev['o']:
                 self.active_zones.append({
@@ -221,71 +221,9 @@ class ConTrader(tpqoa.tpqoa):
         return False
 
     def execute_trades(self, position = 'long'):
-        signal = self.signal
-        self.update_position()
-
-        if signal['status'] == 'active' and signal['position'] == 1:
-            if self.position == 0:
-                self.units = round(self.riskable/signal['sl'])
-                order = self.create_order(self.instrument,
-                                          units=self.units,
-                                          sl_distance= signal['sl'],
-                                          tp_price= signal['tp'],
-                                          suppress = True,
-                                          ret = True)
-                if order:
-                    self.trade_created_at = signal['i']
-                    self.position = 1
-                    self.report_trade(order, 'long')
-
-
-            if self.position == -1:
-                order = self.create_order(self.instrument,
-                                          units=self.units * -2,
-                                          sl_distance= signal['sl'],
-                                          tp_price= signal['tp'],
-                                          suppress = True,
-                                          ret = True)
-                print(order)
-                if order:
-                    self.trade_created_at = signal['i']
-                    self.position = 1
-                    self.report_trade(order, 'long')
-
-
-        if signal['status'] == 'active' and signal['position'] == -1:
-            if self.position == 0:
-                self.units = round((self.riskable/signal['sl'])* -1)
-                order = self.create_order(self.instrument,
-                                          units= self.units,
-                                          sl_distance= signal['sl'],
-                                          tp_price= signal['tp'],
-                                          suppress = True,
-                                          ret = True)
-                if order:
-                    self.trade_created_at = signal['i']
-                    self.position = -1
-                    self.report_trade(order, 'short')
-
-            if self.position == 1:
-                order = self.create_order(self.instrument,
-                                          units=self.units * -2,
-                                          sl_distance= signal['sl'],
-                                          tp_price= signal['tp'],
-                                          suppress = True,
-                                          ret = True)
-                print(order)
-                if order:
-                    self.trade_created_at = signal['i']
-                    self.position = -1
-                    self.report_trade(order, 'short')
-
-
         if position == 'neutral':
             order = self.create_order(self.instrument,
                                       units= -self.units,
-                                      sl_distance= signal['sl'],
-                                      tp_price= signal['tp'],
                                       suppress = True,
                                       ret = True)
             if order:
@@ -293,6 +231,69 @@ class ConTrader(tpqoa.tpqoa):
                 self.units = 0
                 self.trade_created_at = 0
                 self.report_trade(order, position)
+
+        else:
+            signal = self.signal
+            self.update_position()
+
+            if signal['status'] == 'active' and signal['position'] == 1:
+                if self.position == 0:
+                    self.units = round(self.riskable/signal['sl'])
+                    order = self.create_order(self.instrument,
+                                              units=self.units,
+                                              sl_distance= signal['sl'],
+                                              tp_price= signal['tp'],
+                                              suppress = True,
+                                              ret = True)
+                    if order:
+                        self.trade_created_at = signal['i']
+                        self.position = 1
+                        self.report_trade(order, 'long')
+                        self.signal = {}
+
+
+                if self.position == -1:
+                    order = self.create_order(self.instrument,
+                                              units=self.units * -2,
+                                              sl_distance= signal['sl'],
+                                              tp_price= signal['tp'],
+                                              suppress = True,
+                                              ret = True)
+                    if order:
+                        self.trade_created_at = signal['i']
+                        self.position = 1
+                        self.report_trade(order, 'long')
+                        self.signal = {}
+
+
+            if signal['status'] == 'active' and signal['position'] == -1:
+                if self.position == 0:
+                    self.units = round((self.riskable/signal['sl'])* -1)
+                    order = self.create_order(self.instrument,
+                                              units= self.units,
+                                              sl_distance= signal['sl'],
+                                              tp_price= signal['tp'],
+                                              suppress = True,
+                                              ret = True)
+                    if order:
+                        self.trade_created_at = signal['i']
+                        self.position = -1
+                        self.report_trade(order, 'short')
+                        self.signal = {}
+
+                if self.position == 1:
+                    order = self.create_order(self.instrument,
+                                              units=self.units * -2,
+                                              sl_distance= signal['sl'],
+                                              tp_price= signal['tp'],
+                                              suppress = True,
+                                              ret = True)
+                    if order:
+                        self.trade_created_at = signal['i']
+                        self.position = -1
+                        self.report_trade(order, 'short')
+                        self.signal={}
+
 
     def update_position(self):
         positions = self.get_positions()
