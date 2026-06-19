@@ -221,6 +221,7 @@ class ConTrader(tpqoa.tpqoa):
         return False
 
     def execute_trades(self, position = 'long'):
+        self.update_position()
         if position == 'neutral':
             order = self.create_order(self.instrument,
                                       units= -self.units,
@@ -234,8 +235,6 @@ class ConTrader(tpqoa.tpqoa):
 
         else:
             signal = self.signal
-            self.update_position()
-
             if signal['status'] == 'active' and signal['position'] == 1:
                 if self.position == 0:
                     self.units = round(self.riskable/signal['sl'])
@@ -264,6 +263,7 @@ class ConTrader(tpqoa.tpqoa):
                         self.position = 1
                         self.report_trade(order, 'long')
                         self.signal = {}
+                        self.units = self.units * -1
 
 
             if signal['status'] == 'active' and signal['position'] == -1:
@@ -293,6 +293,7 @@ class ConTrader(tpqoa.tpqoa):
                         self.position = -1
                         self.report_trade(order, 'short')
                         self.signal={}
+                        self.units = self.units * -1
 
 
     def update_position(self):
