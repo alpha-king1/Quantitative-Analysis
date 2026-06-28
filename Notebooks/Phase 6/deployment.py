@@ -40,7 +40,7 @@ class ConTrader(tpqoa.tpqoa):
         df = self.get_history(instrument = self.instrument,
                               start = past,
                               end = now,
-                              granularity = 'M1',
+                              granularity = 'H1',
                               price = "M")
         # df = df.resample(self.bar_length, label = "right").last().dropna().iloc[:-1]
 
@@ -98,9 +98,9 @@ class ConTrader(tpqoa.tpqoa):
         if recent_tick.floor('min') - self.last_bar >= self.bar_length:
             self.resample_and_join()
             bullish_signal = self.bullish_obs(len(self.raw_data) -1)
-            bearish_signal = self.bearish_obs(len(self.raw_data) -1)
+            # bearish_signal = self.bearish_obs(len(self.raw_data) -1)
 
-            if bullish_signal or bearish_signal:
+            if bullish_signal:
                 self.execute_trades()
 
             if len(self.raw_data) - self.trade_created_at > 30 and (self.position == 1 or self.position == -1):
@@ -295,6 +295,44 @@ class ConTrader(tpqoa.tpqoa):
                         self.signal={}
                         self.units = self.units * -1
 
+    def sleep_until_market_open(self):
+        """Sleep until the Forex market reopens (Sunday 22:00 UTC)."""
+
+        now = datetime.now(timezone.utc)
+
+        # Saturday
+        if now.weekday() == 5:
+            days_until_sunday = 1
+            reopen = datetime(
+                now.year,
+                now.month,
+                now.day,
+                22,
+                0,
+                tzinfo=timezone.utc
+            ) + timedelta(days=days_until_sunday)
+
+        # Sunday before 22:00 UTC
+        elif now.weekday() == 6 and now.hour < 22:
+            reopen = datetime(
+                now.year,
+                now.month,
+                now.day,
+                22,
+                0,
+                tzinfo=timezone.utc
+            )
+
+        else:
+            return
+
+        seconds = (reopen - now).total_seconds()
+
+        print(f"\nMarket closed.")
+        print(f"Sleeping until {reopen.strftime('%Y-%m-%d %H:%M UTC')}")
+        print(f"Sleep time: {seconds / 3600:.2f} hours\n")
+
+        time.sleep(seconds)
 
     def update_position(self):
         positions = self.get_positions()
@@ -331,15 +369,16 @@ class ConTrader(tpqoa.tpqoa):
 
 print('starting')
 if __name__ == "__main__":
-    trader = ConTrader('oanda.cfg', 'XAU_USD', bar_length='1min', risk_percentage=2)
+    trader = ConTrader('oanda.cfg', 'XAU_USD', bar_length='60min', risk_percentage=2)
 
     print("Fetching historical M1 foundation data...")
-    trader.get_most_recent(days=1)
+    trader.get_most_recent()
 
     print("Entering live streaming loop with auto-reconnect fallback...")
 
     while True:
         try:
+            trader.sleep_until_market_open()
             # This triggers OANDA's live data feed
             trader.stream_data(trader.instrument)
 
