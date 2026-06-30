@@ -33,7 +33,7 @@ class ConTrader(tpqoa.tpqoa):
         self.active_zones = []
         #************************************************************************
 
-    def get_most_recent(self, days = 5):
+    def get_most_recent(self, days = 20):
         now = datetime.now(timezone.utc).replace(tzinfo=None)
         now = now.replace(second=0, microsecond=0)  # floor to the hour
         past = now - timedelta(days = days)
@@ -48,7 +48,7 @@ class ConTrader(tpqoa.tpqoa):
         self.dataset_structure()
         for i in range(1, len(self.raw_data)):
             self.bullish_obs(i, take_trade=False)
-            self.bearish_obs(i, take_trade=False)
+            # self.bearish_obs(i, take_trade=False)
 
         self.last_bar = self.raw_data.index[-1]
 
@@ -369,7 +369,7 @@ class ConTrader(tpqoa.tpqoa):
 
 print('starting')
 if __name__ == "__main__":
-    trader = ConTrader('oanda.cfg', 'XAU_USD', bar_length='60min', risk_percentage=2)
+    trader = ConTrader('../../oanda.cfg', 'XAU_USD', bar_length='60min', risk_percentage=2)
 
     print("Fetching historical M1 foundation data...")
     trader.get_most_recent()
