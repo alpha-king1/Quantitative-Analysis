@@ -1,3 +1,4 @@
+import joblib
 import tpqoa
 import pandas as pd
 import numpy as np
@@ -23,6 +24,11 @@ class ConTrader(tpqoa.tpqoa):
         self.riskable = float(self.balance) * (risk_percentage/100)
         self.pl = self.summary['pl']
         self.profits = [] # NEW
+        self.model = joblib.load('../../models/ob_model.joblib')
+        self.x = ['impulse_candle_size', 'created_hour', 'distance', 'l', 'c', 'o', 'h',
+             'hour_hit', 'Zone_Top', 'Zone_Bottom', 'zone_size', 'atr_14',
+             'sessions_num', 'vol_regime_num']
+
 
         # unit = amount risk/sl distance
         # amount risk = risk_percentage * balance
@@ -84,6 +90,13 @@ class ConTrader(tpqoa.tpqoa):
         ]
 
         self.raw_data['sessions'] = np.select(conditions, choices, default='off')
+        session_map = {'asian': 1, 'asian/london': 2, 'london': 3, 'london/NY': 4, 'NY': 5, 'closing': 6}
+        self.raw_data['sessions_num'] = self.raw_data['sessions'].map(session_map)
+        self.raw_data['sessions_num'] = self.raw_data['sessions'].map(session_map)
+
+        regime_map = {'Low': 1, 'Medium': 2, 'High': 3}  # Adjust based on your actual labels
+        self.raw_data['vol_regime_num'] = self.raw_data['vol_regime'].map(regime_map)
+        self.raw_data['vol_regime_num'] = self.raw_data['vol_regime'].map(regime_map)
 
     def on_success(self, time, bid, ask):
         print(self.ticks, end = " ")
@@ -102,7 +115,7 @@ class ConTrader(tpqoa.tpqoa):
 
             if bullish_signal:
                 self.execute_trades()
-
+            self.update_position()
             if len(self.raw_data) - self.trade_created_at > 30 and (self.position == 1 or self.position == -1):
                 print('going neutral')
                 self.execute_trades('neutral')
@@ -119,7 +132,7 @@ class ConTrader(tpqoa.tpqoa):
         self.raw_data = pd.concat([self.raw_data, candle_data])
         self.tick_data = pd.DataFrame(columns=self.tick_data.columns)  # clear — no overlap
         self.dataset_structure()
-        self.last_bar = self.raw_data.index[-1].floor('min')
+        self.last_bar = self.raw_data.index[-1].floor('h')
 
     def bullish_obs(self, i, displacement_mult=2.0, take_trade = True):
         """
@@ -156,18 +169,45 @@ class ConTrader(tpqoa.tpqoa):
                 if curr['l'] <= ((zone['top'] + zone['bottom'])/2) and i - zone['created_at'] > 10:
                     hit = True
             if hit and take_trade:
-                self.signal = {
-                    'status': 'active',
-                    'position': 1,
-                    'tp': round(prev['c'] + 100),
-                    'sl': 25,
-                    'entry_type': "market",
-                    'ml_prob':0.6,
-                    'i': i
-                }
-                zone['status'] = 'Mitigated'  # Mark as done
+                current_features = \
+                    {
+                        'impulse_candle_size': self.raw_data['body'].shift(-1).iloc[zone['created_at']],
+                        'created_hour': self.raw_data.index[zone['created_at']].hour,
+                        'distance': (self.raw_data['time'].iloc[i] - self.raw_data.index[zone['created_at']]).total_seconds() / 3600,
+                        'hour_hit': self.raw_data.index[i].hour,
+                        'Zone_Top': zone['top'],
+                        'Zone_Bottom': zone['bottom'],
+                        'zone_size': zone['top'] - zone['bottom'],
+                        # 'Created_At': data.index[zone['created_at']],
+                        'atr_14': self.raw_data['ATR_14'].iloc[i],
+                        'vol_regime_num': self.raw_data['vol_regime_num'].iloc[i],
+                        'sessions_num': self.raw_data['sessions_num'].iloc[i],
+                        'Hit_at': self.raw_data.index[i],
+                        'l': self.raw_data['l'].iloc[i],
+                        'c': self.raw_data['c'].iloc[i],
+                        'o': self.raw_data['o'].iloc[i],
+                        'h': self.raw_data['h'].iloc[i],
+                        'ATR_14': self.raw_data['ATR_14'].iloc[i]
+                    }
+                features = pd.DataFrame([current_features])
 
-                return True
+                x_live_aligned = features.reindex(columns=self.x)
+                prob_success = self.model.predict_proba(x_live_aligned)[0][1]
+                ret = None
+                # 3. THE ML FILTER: Only take the trade if probability is > 60% (or your chosen threshold)
+                if prob_success > 0.55:
+                    self.signal = {
+                        'status': 'active',
+                        'position': 1,
+                        'tp': round(prev['c'] + 100),
+                        'sl': 25,
+                        'entry_type': "market",
+                        'ml_prob':0.6,
+                        'i': i
+                    }
+                    zone['status'] = 'Mitigated'  # Mark as done
+
+                    return True
 
         return False
 
